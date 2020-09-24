@@ -1,0 +1,18 @@
+<ion-header>
+  <app-topbar></app-topbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-card button *ngFor="let course of courses" (click)=navigateCourse(course) mode="md">
+    <ion-item lines="none">
+      <ion-icon name="book-outline" slot="start"></ion-icon>
+      <ion-card-header>
+        <ion-card-title>{{ course.name }}</ion-card-title>
+        <ion-card-subtitle>{{ this.utils.formatName(course.academics[0]) }}</ion-card-subtitle>
+      </ion-card-header>
+    </ion-item>
+  </ion-card>
+
+</ion-content>
+ 

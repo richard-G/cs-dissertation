@@ -1,0 +1,17 @@
+<ion-header>
+  <app-topbar></app-topbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card>
+    <ion-list>
+      <ion-item button (click)="logout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Logout</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  
+
+</ion-content>

@@ -1,0 +1,38 @@
+.score-card {
+    display: flex;
+    align-items: center;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        text-align: center;
+
+        .value {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    }
+
+    .container + .container {
+        border-left: 1px solid black;
+    }
+}
+
+
+// accordion logic for achievements
+ion-card {
+    .expand {
+        max-height: 50vh;          // check this
+        transition: max-height 0.3s ease-in;
+    }
+
+    .hide {
+        max-height: 0;
+        transition: max-height 0.3s ease-out;
+    }
+
+    .bold {
+        font-weight: 700;
+    }
+}

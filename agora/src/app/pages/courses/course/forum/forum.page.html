@@ -1,0 +1,47 @@
+<ion-header>
+  <app-topbar>
+    <ion-back-button></ion-back-button>
+  </app-topbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+
+
+  <div class="container">
+    <ion-item>
+      <ion-icon name="book-outline" slot="start"></ion-icon>
+      <ion-label *ngIf="course">
+        <h1>{{ course.name }}</h1>
+        <h2>{{ this.utils.formatName(course.academics[0]) }}</h2>
+      </ion-label>
+    </ion-item>
+  </div>
+
+  <ion-card *ngIf="threads && threads.length > 0;">
+    <ion-item>
+      <ion-icon name="chatbox" slot="start"></ion-icon>
+      <ion-label><b>Threads</b></ion-label>
+    </ion-item>
+    <ion-item *ngFor="let thread of threads" button (click)="navigateToThread(thread)">
+      <ion-icon name="chatbox-outline" slot="start"></ion-icon>
+      <ion-label>
+        <h2>{{ thread.title }}</h2>
+        <h6><i>{{ utils.formatDate(thread.timestamp) }}</i></h6>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+  <ion-card *ngIf="threads && threads.length === 0;">
+    <ion-item>
+      <ion-label>This module has no threads.</ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card *ngIf="role === 'academic'">
+    <ion-list>
+      <ion-item button (click)="constructThread()">
+        <ion-icon name="reader-outline" slot="start"></ion-icon>
+        <ion-label>Create New Thread</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

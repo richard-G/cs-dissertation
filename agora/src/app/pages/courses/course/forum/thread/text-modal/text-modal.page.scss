@@ -1,0 +1,48 @@
+ion-card {
+    // padding-right: 0;
+    // --background: var(--ion-color-light);
+    // --color: var(--ion-color-dark) !important;
+
+    .comment-container {
+        display: flex;
+        flex-direction: column;
+        padding: 2px 0px 2px 8px;
+        border-left: 1px solid var(--ion-color-medium);
+    }
+
+    ion-card-content {
+        width: 100%;
+        padding: 4px 2px 1px 5px;
+
+        
+
+        .timestamp {
+            font-style: italic;
+            float: right;
+            font-size: 0.8rem;
+            padding-top: 4px;
+        }
+    
+        .poster {
+            color: grey;
+            font-weight: 600;
+        }
+    
+        .text {
+            margin-top: 2px;
+            margin-left: 5px;
+        }
+    
+        // highlights academics
+        .highlight {
+            color: var(--ion-color-success) !important;
+        }
+
+        // ion-card-content {
+        //     width: 100%;
+        //     padding: 0;
+        // }
+    }
+
+    
+}

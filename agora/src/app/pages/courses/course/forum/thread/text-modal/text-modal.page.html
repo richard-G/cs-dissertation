@@ -1,0 +1,51 @@
+<ion-header>
+  <app-topbar>
+    <ion-back-button></ion-back-button>
+  </app-topbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+
+  <div class="container">
+    <ion-item>
+      <ion-icon name="book-outline" slot="start"></ion-icon>
+      <ion-label *ngIf="course">
+        <h1>{{ course.name }}</h1>
+        <h2>{{ this.utils.formatName(course.academics[0]) }}</h2>
+      </ion-label>
+    </ion-item>
+  </div>
+
+  <ion-card *ngIf="thread">
+    <ion-item>
+      <ion-icon name="chatbox" slot="start"></ion-icon>
+      <ion-label><b>{{ thread.title }}</b></ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card *ngIf="parentComment">
+    <ion-item>
+      <ion-icon slot="start" name="chatbubbles-outline"></ion-icon>
+      <ion-label><i>parent comment:</i></ion-label>
+    </ion-item>
+    <ion-card-content>
+      <h6 class="poster" [ngClass]="(parentComment.role === 'academic') ? 'highlight' : 'none'">{{ utils.formatName(parentComment) }}</h6>
+      <div class="text">
+        {{ parentComment.text }}
+      </div>
+      <h6 class="timestamp">{{ utils.formatDate(parentComment.timestamp) }} @ {{ utils.formatTime(parentComment.timestamp) }}</h6>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <form [formGroup]="form" (ngSubmit)="postComment()">
+      <ion-item>
+        <ion-textarea autocapitalize="on" maxlength="750" auto-grow="true" formControlName="text" placeholder="Your comment..."></ion-textarea>
+      </ion-item>
+      <ion-button type="submit" [disabled]="!form.valid" expand="block" color="success">Post Comment</ion-button>
+    </form>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,88 @@
+ion-label {
+    h6 {
+        float: right;
+    }
+
+    h2 {
+        white-space: pre-wrap;
+    }
+}
+
+ion-card {
+    // padding-right: 0;
+    // --background: var(--ion-color-light);
+    // --color: var(--ion-color-dark) !important;
+
+    width: 100%;
+    // height: 100%;
+    margin: 0;
+    border-radius: 0;
+
+    .comment-container {
+        display: flex;
+        flex-direction: column;
+        padding: 2px 0px 2px 8px;
+        border-left: 1px solid var(--ion-color-medium);
+    }
+
+    .ripple {
+        position: relative;
+        overflow: hidden;
+    }
+
+    ion-card-content {
+        width: 100%;
+        padding: 4px 2px 1px;
+
+        
+
+        .timestamp {
+            font-style: italic;
+            float: right;
+            font-size: 0.8rem;
+            padding-top: 4px;
+        }
+
+        .name-score-container {
+            width: 100%;
+
+            .poster {
+                color: grey;
+                font-weight: 600;
+                display: inline;
+            }
+    
+            .score {
+                color: var(--ion-color-primary);
+                font-weight: 600;
+                float: right;
+                margin-right: 2px;
+            }
+        }
+    
+        
+    
+        .text {
+            margin-top: 2px;
+            margin-left: 5px;
+        }
+    
+        // highlights academics
+        .highlight {
+            color: var(--ion-color-success) !important;
+        }
+
+    }
+
+    ion-card-content + ion-card-content {
+        border-top: 1px solid grey;
+    }
+
+    
+}
+
+
+
+
+
+

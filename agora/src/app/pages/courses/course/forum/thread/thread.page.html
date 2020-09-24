@@ -1,0 +1,104 @@
+<ion-header>
+  <app-topbar>
+    <ion-back-button></ion-back-button>
+  </app-topbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <ion-item>
+      <ion-icon name="book-outline" slot="start"></ion-icon>
+      <ion-label *ngIf="course" class="ion-text-wrap">
+        <h1>{{ course.name }}</h1>
+        <h2>{{ this.utils.formatName(course.academics[0]) }}</h2>
+      </ion-label>
+    </ion-item>
+  </div>
+
+  <ion-card>
+    <ion-list>
+      <ion-item button *ngIf="role === 'academic'" color="danger" (click)="initDeleteThread()">
+        <ion-icon name="trash-bin-outline" slot="start"></ion-icon>
+        <ion-label>Delete Thread</ion-label>
+      </ion-item>
+      <ion-item button (click)="bookmarkThread(thread)" *ngIf="thread">
+        <ion-icon [name]="this.bookmarked ? 'star' : 'star-outline'" color="warning" slot="start"></ion-icon>
+        <ion-label>Bookmark Thread</ion-label>
+      </ion-item>
+      <ion-item button (click)="constructComment()">
+        <ion-icon name="chatbubble-ellipses-outline" slot="start"></ion-icon>
+        <ion-label>Post a Comment</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card *ngIf="comments && comments.length > 0 && thread;">
+    <ion-list>
+    <ion-item>
+      <ion-icon name="chatbox" slot="start"></ion-icon>
+      <ion-label class="ion-text-wrap"><b>{{ thread.title }}</b></ion-label>
+    </ion-item>
+    <div *ngFor="let comment of comments" class="comment-container">
+      <ion-card-content button detail="true" (click)="triggerActionSheet(comment)" class="ion-activatable ripple">
+        <ion-ripple-effect></ion-ripple-effect>
+        <div class="name-score-container">
+          <h6 class="poster" [ngClass]="(comment.role === 'academic') ? 'highlight' : 'none'">{{ utils.formatName(comment) }}</h6>
+          <h6 class="score" *ngIf="comment.score != 0">
+            +{{ comment.score }} kudos
+          </h6>
+        </div>
+        <div class="text">
+          {{ comment.text }}
+        </div>
+        <h6 class="timestamp">{{ utils.formatDate(comment.timestamp) }} @ {{ utils.formatTime(comment.timestamp) }}</h6>
+      </ion-card-content>
+
+      <div *ngFor="let child of comment.children" class="comment-container">
+        <ion-card-content  button detail="true" (click)="triggerActionSheet(child)" class="ion-activatable ripple">
+          <ion-ripple-effect></ion-ripple-effect>
+          <div class="name-score-container">
+            <h6 class="poster" [ngClass]="(child.role === 'academic') ? 'highlight' : 'none'">{{ utils.formatName(child) }}</h6>
+            <h6 class="score" *ngIf="child.score != 0">
+              +{{ child.score }} kudos
+            </h6>
+          </div>
+          <div class="text">
+            {{ child.text }}
+          </div>
+          <h6 class="timestamp">{{ utils.formatDate(child.timestamp) }} @ {{ utils.formatTime(child.timestamp) }}</h6>
+        </ion-card-content>
+
+        <div *ngFor="let grandchild of child.children" class="comment-container">
+          <ion-card-content  button detail="true" (click)="triggerActionSheet(grandchild)" class="ion-activatable ripple">
+            <ion-ripple-effect></ion-ripple-effect>
+            <div class="name-score-container">
+              <h6 class="poster" [ngClass]="(grandchild.role === 'academic') ? 'highlight' : 'none'">{{ utils.formatName(grandchild) }}</h6>
+              <h6 class="score" *ngIf="grandchild.score != 0">
+                +{{ grandchild.score }} kudos
+              </h6>
+            </div>
+            <div class="text">
+              {{ grandchild.text }}
+            </div>
+            <h6 class="timestamp">{{ utils.formatDate(grandchild.timestamp) }} @ {{ utils.formatTime(grandchild.timestamp) }}</h6>
+            
+          </ion-card-content>
+  
+          
+        </div>
+      </div>
+    
+      
+    </div>
+  </ion-list>
+  </ion-card>
+  <ion-card *ngIf="thread && comments && comments.length === 0;">
+    <ion-item>
+      <ion-icon name="chatbox" slot="start"></ion-icon>
+      <ion-label class="ion-text-wrap"><b>{{ thread.title }}</b></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>This thread has no comments.</ion-label>
+    </ion-item>
+  </ion-card>
+
+</ion-content>

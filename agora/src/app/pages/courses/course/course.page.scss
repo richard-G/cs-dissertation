@@ -1,0 +1,42 @@
+h1 {
+    // font-weight: 700;
+    // font-size: 28px;
+    // line-height: 33px;
+    white-space: pre-wrap
+}
+
+h2 {
+    // color: rgb(102, 102, 102);
+    // font-weight: 700;
+    // font-size: 12px;
+    // text-transform: uppercase;
+    white-space: pre-wrap
+}
+
+// accordion for module description
+ion-card {
+    ion-card-content {
+        // max-height: 0px;
+        padding: 0px 20px;
+        
+        // padding: 20px;
+        transition: max-height 0.3s ease-out;
+        // transition: padding 0.4s ease-out;
+    }
+
+    .expand {
+        max-height: 200vh;
+        // padding: 20px;
+        transition: max-height 0.3s ease-in;
+        // transition: padding 0.4s ease-in;
+    }
+
+    .hide {
+        max-height: 0;
+        transition: max-height 0.3s ease-out;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+}

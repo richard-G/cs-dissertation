@@ -1,0 +1,26 @@
+<ion-header>
+  <app-topbar></app-topbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card>
+    <div class="img-container">
+      <img src="../assets/img/parthenon.png">
+    </div>
+    <ion-card-content>
+      Please log in with your university credentials.
+    </ion-card-content>
+    <form [formGroup]="form" (ngSubmit)="logForm()">
+      <ion-item>
+        <ion-input type="text" formControlName="email" placeholder="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" formControlName="password" placeholder="password"></ion-input>
+      </ion-item>
+      <ion-button type="submit" [disabled]="!form.valid" expand="block" color="success">Submit</ion-button>
+    </form>
+  </ion-card>
+  
+  
+</ion-content>

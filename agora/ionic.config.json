@@ -1,0 +1,7 @@
+{
+  "name": "agora",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

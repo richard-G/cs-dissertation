@@ -1,0 +1,35 @@
+<ion-header>
+  <app-topbar>
+    <ion-back-button></ion-back-button>
+  </app-topbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="container">
+    <ion-item>
+      <ion-icon name="book-outline" slot="start"></ion-icon>
+      <ion-label *ngIf="course">
+        <h1>{{ course.name }}</h1>
+        <h2>{{ this.utils.formatName(course.academics[0]) }}</h2>
+      </ion-label>
+    </ion-item>
+  </div>
+
+  <ion-card>
+    <ion-item>
+      <ion-icon name="reader" slot="start"></ion-icon>
+      <ion-label><b>Create New Thread</b></ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <form [formGroup]="form" (ngSubmit)="postThread()">
+      <ion-item>
+        <ion-input autocapitalize="on" maxlength="45" type="text" formControlName="title" placeholder="thread title..."></ion-input>
+      </ion-item>
+      <ion-button type="submit" [disabled]="!form.valid" expand="block" color="success">Post Thread</ion-button>
+    </form>
+  </ion-card>
+
+</ion-content>

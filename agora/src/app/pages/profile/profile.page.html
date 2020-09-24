@@ -1,0 +1,97 @@
+<ion-header>
+  <app-topbar></app-topbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+   
+  <ion-card *ngIf="user">
+    <ion-card-header>
+      <ion-card-title>
+        {{ utils.formatName(user) }}
+      </ion-card-title>
+      <ion-card-subtitle *ngIf="user.degree_qualification && user.degree_title">
+        {{ user.degree_qualification }} {{ user.degree_title }}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-item lines="none">
+      <ion-label>
+        {{ user.university }}
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+
+  <ion-card *ngIf="user && user.role === 'student'" class="score-card">
+    <div class="container">
+      <p>My Kudos</p>
+      <p class="value">{{ user.kudos }}</p>
+    </div>
+    
+    <div class="container">
+      <p>My Contributions</p>
+      <p class="value">{{ user.contributions }}</p>
+    </div>
+  </ion-card>
+
+  <ion-card>
+    
+
+
+
+    <ion-list *ngIf="user && user.role === 'student'">
+      <ion-item [detail]="toggled" button (click)="toggleAchievements()">
+        <ion-icon [name]="toggled ? 'trophy-outline' : 'trophy'" slot="start"></ion-icon>
+        <ion-label [ngClass]="{'bold' : !toggled}">My Achievements</ion-label>
+      </ion-item>
+      <div *ngIf="achievements && achievements.length > 0">
+        <ion-item *ngFor="let achievement of achievements" [ngClass]="!toggled ? 'expand' : 'hide'" (click)="toggleAchievements()">
+          <img slot="start" [src]="'assets/achievements/' + achievement.icon_src"/>
+          <ion-label class="ion-text-wrap">
+            <ion-text>
+              <h2><b>{{ achievement.name }}</b></h2>
+            </ion-text>
+            <ion-text>
+              <p>{{ achievement.description }}</p>
+            </ion-text>
+            <p>awarded: {{ utils.formatDate(achievement.timestamp) }}</p>
+          </ion-label>
+        </ion-item>
+      </div>
+      <div *ngIf="achievements && achievements.length === 0">
+        <ion-item [ngClass]="!toggled ? 'expand' : 'hide'" (click)="toggleAchievements()">
+          <ion-label>
+            No achievements yet!
+          </ion-label>
+        </ion-item>
+      </div>
+    </ion-list>
+
+    <ion-list>
+      <ion-item [detail]="toggledBookmarks" button (click)="toggleBookmarks()">
+        <ion-icon [name]="toggledBookmarks ? 'albums-outline' : 'albums'" slot="start"></ion-icon>
+        <ion-label [ngClass]="{'bold' : !toggledBookmarks}">My Bookmarks</ion-label>
+      </ion-item>
+      <div *ngIf="threads && threads.length > 0">
+        <ion-item *ngFor="let thread of threads" button (click)="navigateToThread(thread)" [ngClass]="!toggledBookmarks ? 'expand' : 'hide'">
+          <ion-icon name="chatbox-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h2><b>{{ thread.title }}</b></h2>
+            <h4>{{ thread.name }}</h4>
+            <h6><i>{{ utils.formatDate(thread.timestamp) }}</i></h6>
+          </ion-label>
+        </ion-item>
+      </div>
+      <div *ngIf="threads && threads.length === 0">
+        <ion-item [ngClass]="!toggledBookmarks ? 'expand' : 'hide'" (click)="toggleBookmarks()">
+          <ion-label class="ion-text-wrap">
+            Your bookmarked threads will show here.
+          </ion-label>
+        </ion-item>
+      </div>
+    </ion-list>
+
+
+  </ion-card>
+
+
+</ion-content>
